@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MapRouteImport } from './routes/map'
+import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as RankingsRouteImport } from './routes/rankings'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const MapRoute = MapRouteImport.update({
   path: '/map',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MethodologyRoute = MethodologyRouteImport.update({
+  id: '/methodology',
+  path: '/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RankingsRoute = RankingsRouteImport.update({
   id: '/rankings',
   path: '/rankings',
@@ -32,30 +38,34 @@ const RankingsRoute = RankingsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/map': typeof MapRoute
+  '/methodology': typeof MethodologyRoute
   '/rankings': typeof RankingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/map': typeof MapRoute
+  '/methodology': typeof MethodologyRoute
   '/rankings': typeof RankingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/map': typeof MapRoute
+  '/methodology': typeof MethodologyRoute
   '/rankings': typeof RankingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/map' | '/rankings'
+  fullPaths: '/' | '/map' | '/methodology' | '/rankings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/map' | '/rankings'
-  id: '__root__' | '/' | '/map' | '/rankings'
+  to: '/' | '/map' | '/methodology' | '/rankings'
+  id: '__root__' | '/' | '/map' | '/methodology' | '/rankings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MapRoute: typeof MapRoute
+  MethodologyRoute: typeof MethodologyRoute
   RankingsRoute: typeof RankingsRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/methodology': {
+      id: '/methodology'
+      path: '/methodology'
+      fullPath: '/methodology'
+      preLoaderRoute: typeof MethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rankings': {
       id: '/rankings'
       path: '/rankings'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MapRoute: MapRoute,
+  MethodologyRoute: MethodologyRoute,
   RankingsRoute: RankingsRoute,
 }
 export const routeTree = rootRouteImport
