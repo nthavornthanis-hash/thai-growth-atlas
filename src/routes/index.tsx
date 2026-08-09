@@ -61,7 +61,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto -mt-10 grid max-w-5xl gap-4 px-4 sm:grid-cols-3">
+      <section className="relative z-10 mx-auto -mt-10 grid max-w-5xl gap-4 px-4 sm:grid-cols-3">
         {[
           { label: t("stat_zones"), value: data?.zones.length },
           { label: t("stat_parcels"), value: data?.parcels },
