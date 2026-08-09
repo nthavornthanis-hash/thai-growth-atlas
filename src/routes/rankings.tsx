@@ -16,7 +16,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { scoreColor } from "@/components/MapView";
+import { scoreColor } from "@/lib/score-color";
 
 export const Route = createFileRoute("/rankings")({
   head: () => ({

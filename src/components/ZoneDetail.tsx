@@ -10,7 +10,7 @@ import {
 import { useI18n } from "@/lib/i18n";
 import { fmtTHB, type Zone } from "@/lib/zones";
 import { Button } from "@/components/ui/button";
-import { scoreColor } from "@/components/MapView";
+import { scoreColor } from "@/lib/score-color";
 
 export function ZoneDetail({ zone, onClose }: { zone: Zone; onClose: () => void }) {
   const { t, lang } = useI18n();

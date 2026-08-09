@@ -12,6 +12,7 @@ import "leaflet/dist/leaflet.css";
 import { sphereTileUrl } from "@/lib/sphere";
 import type { Zone } from "@/lib/zones";
 import { useI18n } from "@/lib/i18n";
+import { scoreColor } from "@/lib/score-color";
 
 export interface LayerState {
   heatmap: boolean;
@@ -25,16 +26,7 @@ export interface LayerState {
 export const PHUKET_CENTER: [number, number] = [7.8804, 98.3923];
 const THAILAND_CENTER: [number, number] = [13.5, 100.9];
 
-export const scoreColor = (s: number) =>
-  s >= 75
-    ? "#0D9488"
-    : s >= 60
-      ? "#14B8A6"
-      : s >= 45
-        ? "#F59E0B"
-        : s >= 30
-          ? "#F97316"
-          : "#64748B";
+
 
 // Mock THEOS-2 AI detected expansion footprints (Phuket focus)
 const theosPolygon = (lat: number, lon: number, size: number): [number, number][] => {
