@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as RankingsRouteImport } from './routes/rankings'
@@ -17,6 +18,11 @@ import { Route as RankingsRouteImport } from './routes/rankings'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MapRoute = MapRouteImport.update({
@@ -37,12 +43,14 @@ const RankingsRoute = RankingsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/map': typeof MapRoute
   '/methodology': typeof MethodologyRoute
   '/rankings': typeof RankingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/map': typeof MapRoute
   '/methodology': typeof MethodologyRoute
   '/rankings': typeof RankingsRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/map': typeof MapRoute
   '/methodology': typeof MethodologyRoute
   '/rankings': typeof RankingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/map' | '/methodology' | '/rankings'
+  fullPaths: '/' | '/about' | '/map' | '/methodology' | '/rankings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/map' | '/methodology' | '/rankings'
-  id: '__root__' | '/' | '/map' | '/methodology' | '/rankings'
+  to: '/' | '/about' | '/map' | '/methodology' | '/rankings'
+  id: '__root__' | '/' | '/about' | '/map' | '/methodology' | '/rankings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   MapRoute: typeof MapRoute
   MethodologyRoute: typeof MethodologyRoute
   RankingsRoute: typeof RankingsRoute
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/map': {
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   MapRoute: MapRoute,
   MethodologyRoute: MethodologyRoute,
   RankingsRoute: RankingsRoute,
