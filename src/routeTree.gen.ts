@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MapRouteImport } from './routes/map'
+import { Route as RankingsRouteImport } from './routes/rankings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const MapRoute = MapRouteImport.update({
   path: '/map',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RankingsRoute = RankingsRouteImport.update({
+  id: '/rankings',
+  path: '/rankings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/map': typeof MapRoute
+  '/rankings': typeof RankingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/map': typeof MapRoute
+  '/rankings': typeof RankingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/map': typeof MapRoute
+  '/rankings': typeof RankingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/map'
+  fullPaths: '/' | '/map' | '/rankings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/map'
-  id: '__root__' | '/' | '/map'
+  to: '/' | '/map' | '/rankings'
+  id: '__root__' | '/' | '/map' | '/rankings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MapRoute: typeof MapRoute
+  RankingsRoute: typeof RankingsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rankings': {
+      id: '/rankings'
+      path: '/rankings'
+      fullPath: '/rankings'
+      preLoaderRoute: typeof RankingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MapRoute: MapRoute,
+  RankingsRoute: RankingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
