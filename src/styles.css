@@ -158,3 +158,22 @@
     color: var(--color-foreground);
   }
 }
+
+@utility hero-surface {
+  background-image: var(--gradient-hero);
+}
+
+@utility card-elevated {
+  box-shadow: var(--shadow-elevated);
+}
+
+.leaflet-container {
+  background: var(--color-muted);
+  font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--color-card);
+  color: var(--color-card-foreground);
+}
