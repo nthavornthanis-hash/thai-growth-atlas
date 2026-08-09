@@ -81,7 +81,7 @@ interface Props {
   zones: Zone[];
   view: "macro" | "micro";
   layers: LayerState;
-  selectedId?: string;
+  selectedId?: string | undefined;
   onSelect: (z: Zone) => void;
 }
 
