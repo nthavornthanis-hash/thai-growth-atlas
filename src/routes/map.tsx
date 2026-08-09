@@ -38,8 +38,8 @@ function MapPage() {
   const { data, isLoading } = useZones();
   const [view, setView] = useState<"macro" | "micro">("micro");
   const [selected, setSelected] = useState<Zone | null>(null);
-  const [scoreRange, setScoreRange] = useState<number[]>([0, 100]);
-  const [priceRange, setPriceRange] = useState<number[]>([0, 120000]);
+  const [scoreRange, setScoreRange] = useState<[number, number]>([0, 100]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 120000]);
   const [mounted, setMounted] = useState(false);
   const [layers, setLayers] = useState<LayerState>({
     heatmap: true,
@@ -125,7 +125,13 @@ function MapPage() {
               <Label className="text-xs text-muted-foreground">
                 {t("f_score")}: {scoreRange[0]}–{scoreRange[1]}
               </Label>
-              <Slider min={0} max={100} step={1} value={scoreRange} onValueChange={setScoreRange} />
+              <Slider
+                min={0}
+                max={100}
+                step={1}
+                value={scoreRange}
+                onValueChange={(v) => setScoreRange([v[0] ?? 0, v[1] ?? 100])}
+              />
             </div>
             <div className="space-y-3">
               <Label className="text-xs text-muted-foreground">
@@ -136,7 +142,7 @@ function MapPage() {
                 max={120000}
                 step={1000}
                 value={priceRange}
-                onValueChange={setPriceRange}
+                onValueChange={(v) => setPriceRange([v[0] ?? 0, v[1] ?? 120000])}
               />
             </div>
           </CardContent>
