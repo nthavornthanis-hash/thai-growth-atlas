@@ -53,7 +53,7 @@ const dict = {
   l_price: { th: "ราคาประเมินที่ดิน", en: "Land appraisal value" },
   filters: { th: "ตัวกรอง", en: "Filters" },
   f_score: { th: "ช่วงคะแนนศักยภาพ", en: "Potential score range" },
-  f_price: { th: "ช่วงราคาประเมิน (บาท/ตร.ว.)", en: "Appraisal range (THB/sq.wah)" },
+  f_pricerange: { th: "ช่วงราคาประเมิน (บาท/ตร.ว.)", en: "Appraisal range (THB/sq.wah)" },
   showing: { th: "แสดงผล", en: "Showing" },
   zones_unit: { th: "พื้นที่", en: "zones" },
   detail: { th: "รายละเอียดพื้นที่", en: "Zone detail" },
